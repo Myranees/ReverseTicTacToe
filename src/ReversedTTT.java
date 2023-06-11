@@ -153,18 +153,18 @@ public class ReversedTTT extends JFrame implements ActionListener {
     private void playComputerMove() {
         switch (difficulty) {
             case EASY:
-                playRandomMove();
+                makeEasyMove();
                 break;
             case MEDIUM:
-                playSmartMove();
+                makeMediumMove();
                 break;
             case HARD:
-                playBestMove();
+                makeHardMove();
                 break;
         }
     }
 
-    private void playRandomMove() {
+    private void makeEasyMove() {
         Random random = new Random();
         int row, col;
         do {
@@ -177,7 +177,7 @@ public class ReversedTTT extends JFrame implements ActionListener {
         board[row][col] = 'O';
     }
 
-    private void playSmartMove() {
+    private void makeMediumMove() {
         // Check if the computer can win in the next move
         if (checkPossibleWinMove('O')) {
             return;
@@ -189,7 +189,7 @@ public class ReversedTTT extends JFrame implements ActionListener {
         }
 
         // Play the best move using the Minimax algorithm
-        playBestMove();
+        makeHardMove();
     }
 
     private boolean checkPossibleWinMove(char player) {
@@ -212,7 +212,7 @@ public class ReversedTTT extends JFrame implements ActionListener {
         return false;
     }
 
-    private void playBestMove() {
+    private void makeHardMove() {
         // Check if the board is empty
         boolean emptyBoard = true;
         for (int row = 0; row < 3; row++) {
