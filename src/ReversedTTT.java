@@ -84,7 +84,22 @@ public class ReversedTTT extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+    private int calculateScore(char player) {
+        if (checkWin(player)) {
+            // Player wins
+            return 50;
+        } else if (checkWin(getOpponent(player))) {
+            // Player loses
+            return 0;
+        } else {
+            // It's a tie
+            return 20;
+        }
+    }
 
+    private char getOpponent(char player) {
+        return (player == 'X') ? 'O' : 'X';
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JButton) {
@@ -106,16 +121,16 @@ public class ReversedTTT extends JFrame implements ActionListener {
                     board[row][col] = 'X';
 
                     if (checkWin('X')) {
-                        JOptionPane.showMessageDialog(this, "Player O wins!");
+                        JOptionPane.showMessageDialog(this, "Player O wins!, Score: "+calculateScore('X'));
                         gameEnd = true;
                     } else if (!isBoardFull()) {
                         playComputerMove();
                         if (checkWin('O')) {
-                            JOptionPane.showMessageDialog(this, "Player X wins!");
+                            JOptionPane.showMessageDialog(this, "Player X wins!, Score: "+calculateScore('O'));
                             gameEnd = true;
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "It's a draw!");
+                        JOptionPane.showMessageDialog(this, "It's a draw!, Score: "+calculateScore('X'));
                         gameEnd = true;
                     }
                 }
@@ -125,6 +140,7 @@ public class ReversedTTT extends JFrame implements ActionListener {
             }
         }
     }
+
 
 
     private void resetGame() {
