@@ -346,9 +346,4 @@ public class ReversedTTT extends JFrame implements ActionListener {
         return false;
     }
 
-    public static void main(String[] args) {
-        // Set the difficulty level (1: easy, 2: medium, 3: hard)
-        int difficultyLevel = 2;
-        ReversedTTT game = new ReversedTTT(difficultyLevel);
-    }
 }
